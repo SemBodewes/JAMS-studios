@@ -5,7 +5,7 @@ JAMS Studio is ontstaan vanuit het idee dat leren niet saai hoeft te zijn. Door 
 ## Teamleden
 
 | Naam | Rol | GitHub-gebruikersnaam |
-
+| --- | --- |
 | Sem Bodewes | Manager | `@SemBodewes` |
 | Adam Mul | Chef Marketing | `@Kaksoie` |
 | Jurre Stoop | Chef Product | `@jurresto01-sys` |
