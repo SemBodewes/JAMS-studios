@@ -45,6 +45,7 @@ De naam **JAMS Studio** staat voor de voorletters van de vier oprichters (**J**u
 | Sem Bodewes            | Manager        | @SemBodewes           |
 | Adam Mul               | Chef Marketing | @Kaksoie              |
 | Jurre Stoop            | Chef Product   | @jurresto01-sys       |
+| Jurre Stoop            |                | @Ukkepuk20000         |
 | Michael van der Leeden | Chef Kwaliteit | @Michael-fioretti     |
 
 ### Verantwoordelijkheden per rol
