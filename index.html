@@ -5,35 +5,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JAMS Studio | Cellular Legends</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script>
+        // Configureer Tailwind om class-based dark mode te gebruiken
+        tailwind.config = {
+            darkMode: 'class'
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
             scroll-behavior: smooth;
         }
+        /* Achtergrondpatroon voor Light Mode */
         .hero-pattern {
+            background-color: #f8fafc;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%230284c7' fill-opacity='0.08'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        /* Achtergrondpatroon voor Dark Mode */
+        .dark .hero-pattern {
             background-color: #020617;
             background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%233b82f6' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
         }
     </style>
 </head>
-<body class="bg-slate-950 text-slate-300 flex flex-col min-h-screen">
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-700 dark:text-slate-300 flex flex-col min-h-screen transition-colors duration-300">
 
     <!-- Navigatie -->
-    <nav class="bg-slate-950/80 backdrop-blur-md border-b border-slate-800/50 sticky top-0 z-50">
+    <nav class="bg-white/80 dark:bg-slate-950/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800/50 sticky top-0 z-50 transition-colors duration-300">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16 items-center">
                 <div class="flex-shrink-0 flex items-center gap-2">
-                    <!-- Placeholder Logo -->
                     <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold text-xl">
                         J
                     </div>
-                    <span class="font-bold text-xl tracking-tight text-white">JAMS Studio</span>
+                    <span class="font-bold text-xl tracking-tight text-slate-900 dark:text-white">JAMS Studio</span>
                 </div>
-                <div class="flex items-center gap-6 text-sm sm:text-base">
-                    <a href="#game" class="text-slate-300 hover:text-cyan-400 font-medium transition-colors">De Game</a>
-                    <a href="#features" class="text-slate-300 hover:text-cyan-400 font-medium transition-colors">Kenmerken</a>
-                    <a href="#over-ons" class="text-slate-300 hover:text-cyan-400 font-medium transition-colors">Over Ons</a>
+                <div class="flex items-center gap-4 sm:gap-6">
+                    <a href="#game" class="text-slate-600 dark:text-slate-300 hover:text-cyan-600 dark:hover:text-cyan-400 font-medium transition-colors text-sm sm:text-base">Onze Game</a>
+                    <a href="#features" class="text-slate-600 dark:text-slate-300 hover:text-cyan-600 dark:hover:text-cyan-400 font-medium transition-colors text-sm sm:text-base">Gameplay</a>
+                    <a href="#over-ons" class="text-slate-600 dark:text-slate-300 hover:text-cyan-600 dark:hover:text-cyan-400 font-medium transition-colors text-sm sm:text-base hidden sm:inline">Over Ons</a>
+                    
+                    <!-- Theme Switcher Knop -->
+                    <button id="theme-toggle" type="button" aria-label="Wissel kleurthema" 
+                            class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800/80 text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 transition-all focus:outline-none focus:ring-2 focus:ring-cyan-500">
+                        <!-- Zon icoon (zichtbaar in dark mode) -->
+                        <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path>
+                        </svg>
+                        <!-- Maan icoon (zichtbaar in light mode) -->
+                        <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-slate-700" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                        </svg>
+                    </button>
                 </div>
             </div>
         </div>
@@ -41,15 +65,15 @@
 
     <!-- Hero Sectie -->
     <main class="flex-grow">
-        <section class="hero-pattern pt-20 pb-24 text-center border-b border-slate-800/50">
+        <section class="hero-pattern pt-20 pb-24 text-center border-b border-slate-200 dark:border-slate-800/50 transition-colors duration-300">
             <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white tracking-tight mb-6">
-                    Welkom bij <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">JAMS Studio</span>
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-6">
+                    Welkom bij <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500 dark:from-blue-400 dark:to-cyan-400">JAMS Studio</span>
                 </h1>
-                <p class="text-lg sm:text-xl text-slate-400 mb-10 max-w-2xl mx-auto">
+                <p class="text-lg sm:text-xl text-slate-600 dark:text-slate-400 mb-10 max-w-2xl mx-auto">
                     Wij creëren interactieve en educatieve ervaringen. Ontdek spelenderwijs de wetenschap en duik in werelden die je normaal nooit met het blote oog zou kunnen zien.
                 </p>
-                <a href="#game" class="inline-flex items-center justify-center px-8 py-3 border border-slate-700 text-base font-medium rounded-full text-white bg-slate-800 hover:bg-slate-700 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                <a href="#game" class="inline-flex items-center justify-center px-8 py-3 border border-slate-300 dark:border-slate-700 text-base font-medium rounded-full text-slate-900 dark:text-white bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
                     Ontdek onze projecten
                     <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
                 </a>
@@ -61,41 +85,157 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex flex-col lg:flex-row items-center gap-12">
                     
-                    <!-- Afbeelding van de Game -->
+                    <!-- Live UI Preview van de Game (Membraanroute) -->
                     <div class="w-full lg:w-1/2">
-                        <div class="rounded-2xl overflow-hidden border border-slate-700 shadow-[0_0_40px_rgba(14,165,233,0.2)] transform hover:scale-[1.02] transition-transform duration-300">
-                            <img src="image_91f4a3.png" alt="Cellular Legends Startscherm" onerror="this.onerror=null; this.src='https://placehold.co/800x450/020617/0ea5e9?text=Cellular+Legends';" class="w-full h-auto object-cover">
+                        <div class="rounded-2xl overflow-hidden border border-slate-300 dark:border-slate-700/80 bg-[#050814] shadow-xl dark:shadow-[0_0_40px_rgba(14,165,233,0.2)] transform hover:scale-[1.01] transition-all duration-300 select-none text-left font-sans">
+                                        </div>
+                                        <div class="text-sm font-bold text-white mt-0.5">Membraanroute</div>
+                                        <div class="text-[11px] text-slate-400">Kies een vijand voor je aanval of een teamgenoot voor healing.</div>
+                                    </div>
+                                    <div class="text-right">
+                                        <div class="text-[10px] text-rose-400 font-semibold">2 / 2 vijanden over &nbsp; 90 / 90 totaal</div>
+                                        <div class="w-24 h-1.5 bg-slate-800 rounded-full mt-1.5 ml-auto overflow-hidden">
+                                            <div class="bg-rose-500 h-full w-full"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Main Battle Grid -->
+                                <div class="grid grid-cols-12 gap-2.5">
+                                    <!-- Initiative -->
+                                    <div class="col-span-4 bg-[#0b1024] border border-slate-800/90 rounded-xl p-2.5 space-y-1.5">
+                                        <div class="text-[11px] font-bold text-white">Initiative</div>
+                                        <div class="text-[9px] text-slate-400 pb-1">Ronde 1 · Hierna: Membraanbijter</div>
+                                        
+                                        <div class="p-1.5 rounded-lg bg-cyan-950/50 border border-cyan-500/50 flex justify-between items-center">
+                                            <div>
+                                                <div class="text-[10px] font-bold text-white">1 &nbsp; Jij (Jij)</div>
+                                                <div class="text-[8px] text-cyan-300">NU AAN DE BEURT</div>
+                                            </div>
+                                            <span class="text-xs font-bold text-amber-400">20</span>
+                                        </div>
+
+                                        <div class="p-1.5 rounded-lg bg-slate-900/80 border border-slate-800 flex justify-between items-center">
+                                            <div>
+                                                <div class="text-[10px] font-semibold text-slate-300">2 &nbsp; Membraanbijter</div>
+                                                <div class="text-[8px] text-slate-500">HIERNA · d20 16 + 0</div>
+                                            </div>
+                                            <span class="text-xs font-bold text-amber-400/80">16</span>
+                                        </div>
+
+                                        <div class="p-1.5 rounded-lg bg-slate-900/80 border border-slate-800 flex justify-between items-center">
+                                            <div>
+                                                <div class="text-[10px] font-semibold text-slate-300">3 &nbsp; Zure Slijmcel</div>
+                                                <div class="text-[8px] text-slate-500">Vijand · d20 6 + 0</div>
+                                            </div>
+                                            <span class="text-xs font-bold text-amber-400/80">6</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Team & Vijanden -->
+                                    <div class="col-span-8 bg-[#0b1024] border border-slate-800/90 rounded-xl p-2.5 flex flex-col justify-between">
+                                        <div class="text-center text-[10px] text-cyan-300/80 font-medium mb-2">
+                                            Cytoplasma Plains · Membraanroute · Golgi-depot
+                                        </div>
+                                        
+                                        <div class="grid grid-cols-2 gap-2">
+                                            <!-- Speler -->
+                                            <div class="p-2 rounded-lg bg-cyan-950/30 border border-cyan-500/40">
+                                                <div class="flex justify-between items-center mb-1">
+                                                    <span class="text-[10px] font-bold text-white">Jij</span>
+                                                    <span class="text-[9px] text-emerald-400">Aanvaller · Lv. 2</span>
+                                                </div>
+                                                <div class="text-[10px] font-semibold text-slate-200">102 / 124 HP</div>
+                                                <div class="w-full h-1 bg-slate-800 rounded-full my-1 overflow-hidden">
+                                                    <div class="bg-emerald-400 h-full w-4/5"></div>
+                                                </div>
+                                                <div class="text-[9px] text-cyan-300">ATP · mana 117 / 117</div>
+                                                <div class="w-full h-1 bg-slate-800 rounded-full mt-1 overflow-hidden">
+                                                    <div class="bg-cyan-400 h-full w-full"></div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Vijanden -->
+                                            <div class="space-y-1.5">
+                                                <div class="p-2 rounded-lg bg-slate-900/90 border border-amber-500/50">
+                                                    <div class="flex justify-between items-center">
+                                                        <span class="text-[10px] font-bold text-white">Membraanbijter</span>
+                                                        <span class="text-[8px] text-amber-400">Doelwit</span>
+                                                    </div>
+                                                    <div class="w-full h-1 bg-slate-800 rounded-full my-1 overflow-hidden">
+                                                        <div class="bg-rose-500 h-full w-full"></div>
+                                                    </div>
+                                                    <div class="text-[9px] text-slate-400">42 / 42 HP</div>
+                                                </div>
+                                                <div class="p-2 rounded-lg bg-slate-900/90 border border-slate-800">
+                                                    <div class="text-[10px] font-bold text-white">Zure Slijmcel</div>
+                                                    <div class="w-full h-1 bg-slate-800 rounded-full my-1 overflow-hidden">
+                                                        <div class="bg-rose-500 h-full w-full"></div>
+                                                    </div>
+                                                    <div class="text-[9px] text-slate-400">48 / 48 HP</div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Level Up Banner -->
+                                        <div class="mt-2 py-1 px-2 rounded bg-amber-500/10 border border-amber-500/30 text-center text-[9px] text-amber-300 font-medium">
+                                            Jij (Jij) · Level 2! +2 attribute points · Nieuw: DNA Focus
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Bottom Action Cards -->
+                                <div class="grid grid-cols-4 gap-2">
+                                    <div class="bg-[#0b1024] border border-slate-800 rounded-lg p-2">
+                                        <div class="text-[10px] font-bold text-white truncate">Basisaanval</div>
+                                        <div class="text-[8px] text-slate-400 truncate">0 ATP</div>
+                                    </div>
+                                    <div class="bg-[#0b1024] border border-slate-800 rounded-lg p-2">
+                                        <div class="text-[10px] font-bold text-white truncate">Moves & healing</div>
+                                        <div class="text-[8px] text-slate-400 truncate">Via levels</div>
+                                    </div>
+                                    <div class="bg-[#0b1024] border border-slate-800 rounded-lg p-2">
+                                        <div class="text-[10px] font-bold text-white truncate">Membraan Schild</div>
+                                        <div class="text-[8px] text-slate-400 truncate">Aanval -50%</div>
+                                    </div>
+                                    <div class="bg-[#0b1024] border border-slate-800 rounded-lg p-2">
+                                        <div class="text-[10px] font-bold text-white truncate">Stofwisseling</div>
+                                        <div class="text-[8px] text-slate-400 truncate">ATP & temp</div>
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
 
                     <!-- Uitleg Tekst -->
                     <div class="w-full lg:w-1/2 space-y-6">
-                        <div class="inline-block px-3 py-1 rounded-full bg-cyan-900/40 border border-cyan-800/50 text-cyan-300 text-sm font-bold tracking-wide">
+                        <div class="inline-block px-3 py-1 rounded-full bg-cyan-100 dark:bg-cyan-900/40 border border-cyan-300 dark:border-cyan-800/50 text-cyan-800 dark:text-cyan-300 text-sm font-bold tracking-wide">
                             Biologie · co-op RPG
                         </div>
-                        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-white">
+                        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 dark:text-white">
                             Cellular Legends
                         </h2>
                         
-                        <p class="text-xl text-cyan-400 font-medium">
+                        <p class="text-xl text-cyan-600 dark:text-cyan-400 font-medium">
                             Kies je klasse, red de cel en leer terwijl je speelt.
                         </p>
                         
-                        <div class="space-y-4 text-slate-300 text-lg">
+                        <div class="space-y-4 text-slate-600 dark:text-slate-300 text-lg">
                             <p>
-                                <strong class="text-white">Speel solo of met vrienden</strong><br>
+                                <strong class="text-slate-900 dark:text-white">Speel solo of met vrienden</strong><br>
                                 Cellular Legends is een meeslepende educatieve RPG. Speel de campagne solo op jouw eigen tempo, of maak een squad en speel samen met 1-4 spelers.
                             </p>
                             <p>
-                                <strong class="text-white">Ontdek de cel-expeditie</strong><br>
-                                Baan je een weg door <span class="text-cyan-300">24 stages</span>, kies uit <span class="text-cyan-300">4 unieke klassen</span> en ontdek verrassende route-events. Verzamel materialen voor crafting en raadpleeg de Biologiecodex om je kennis te vergroten terwijl je de cel verdedigt.
+                                <strong class="text-slate-900 dark:text-white">Ontdek de cel-expeditie</strong><br>
+                                Baan je een weg door <span class="text-cyan-600 dark:text-cyan-300 font-semibold">24 stages</span>, kies uit <span class="text-cyan-600 dark:text-cyan-300 font-semibold">4 unieke klassen</span> en ontdek verrassende route-events. Verzamel materialen voor crafting en raadpleeg de Biologiecodex om je kennis te vergroten terwijl je de cel verdedigt.
                             </p>
                         </div>
 
                         <div class="pt-6">
                             <!-- Link naar de game met target="_blank" zodat hij in een nieuw tabblad opent -->
                             <a href="https://cellular-legends.onrender.com/" target="_blank" rel="noopener noreferrer" 
-                               class="inline-flex items-center justify-center px-8 py-4 border border-transparent text-lg font-bold rounded-xl text-white bg-cyan-600 hover:bg-cyan-500 shadow-[0_0_20px_rgba(14,165,233,0.4)] hover:shadow-[0_0_30px_rgba(14,165,233,0.6)] transition-all transform hover:-translate-y-1">
+                               class="inline-flex items-center justify-center px-8 py-4 border border-transparent text-lg font-bold rounded-xl text-white bg-cyan-600 hover:bg-cyan-500 shadow-lg dark:shadow-[0_0_20px_rgba(14,165,233,0.4)] hover:shadow-xl dark:hover:shadow-[0_0_30px_rgba(14,165,233,0.6)] transition-all transform hover:-translate-y-1">
                                 🎮 Speel Cellular Legends
                             </a>
                         </div>
@@ -105,56 +245,56 @@
         </section>
 
         <!-- Kenmerken & Gameplay Sectie -->
-        <section id="features" class="py-20 bg-slate-900/40 border-y border-slate-800/60">
+        <section id="features" class="py-20 bg-slate-100/80 dark:bg-slate-900/40 border-y border-slate-200 dark:border-slate-800/60 transition-colors duration-300">
             <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center max-w-2xl mx-auto mb-16">
-                    <h2 class="text-3xl font-bold text-white mb-4">Wat kun je verwachten?</h2>
-                    <p class="text-slate-400 text-lg">
+                    <h2 class="text-3xl font-bold text-slate-900 dark:text-white mb-4">Wat kun je verwachten?</h2>
+                    <p class="text-slate-600 dark:text-slate-400 text-lg">
                         Een diepgaande RPG-ervaring waarin biologische kennis direct invloed heeft op je strategie in het spel.
                     </p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     <!-- Kaart 1 -->
-                    <div class="bg-slate-950/80 border border-slate-800 rounded-2xl p-6 hover:border-cyan-800/60 transition-colors">
-                        <div class="w-12 h-12 bg-cyan-950 border border-cyan-800/50 rounded-xl flex items-center justify-center text-cyan-400 mb-5">
+                    <div class="bg-white dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm dark:shadow-none hover:border-cyan-400 dark:hover:border-cyan-800/60 transition-colors">
+                        <div class="w-12 h-12 bg-cyan-50 dark:bg-cyan-950 border border-cyan-200 dark:border-cyan-800/50 rounded-xl flex items-center justify-center text-cyan-600 dark:text-cyan-400 mb-5">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-2">Co-op & Solo</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed">
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Co-op & Solo</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
                             Speel alleen op je eigen tempo of vorm een squad van 1 tot 4 spelers om samen bedreigingen in de cel te verslaan.
                         </p>
                     </div>
 
                     <!-- Kaart 2 -->
-                    <div class="bg-slate-950/80 border border-slate-800 rounded-2xl p-6 hover:border-cyan-800/60 transition-colors">
-                        <div class="w-12 h-12 bg-cyan-950 border border-cyan-800/50 rounded-xl flex items-center justify-center text-cyan-400 mb-5">
+                    <div class="bg-white dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm dark:shadow-none hover:border-cyan-400 dark:hover:border-cyan-800/60 transition-colors">
+                        <div class="w-12 h-12 bg-cyan-50 dark:bg-cyan-950 border border-cyan-200 dark:border-cyan-800/50 rounded-xl flex items-center justify-center text-cyan-600 dark:text-cyan-400 mb-5">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-2">4 Unieke Klassen</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed">
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">4 Unieke Klassen</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
                             Kies een rol die bij je speelstijl past. Elke klasse beschikt over eigen vaardigheden om het team te ondersteunen of aan te vallen.
                         </p>
                     </div>
 
                     <!-- Kaart 3 -->
-                    <div class="bg-slate-950/80 border border-slate-800 rounded-2xl p-6 hover:border-cyan-800/60 transition-colors">
-                        <div class="w-12 h-12 bg-cyan-950 border border-cyan-800/50 rounded-xl flex items-center justify-center text-cyan-400 mb-5">
+                    <div class="bg-white dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm dark:shadow-none hover:border-cyan-400 dark:hover:border-cyan-800/60 transition-colors">
+                        <div class="w-12 h-12 bg-cyan-50 dark:bg-cyan-950 border border-cyan-200 dark:border-cyan-800/50 rounded-xl flex items-center justify-center text-cyan-600 dark:text-cyan-400 mb-5">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path></svg>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-2">24 Stages & Events</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed">
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">24 Stages & Events</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
                             Reis door 24 uitdagende levels vol onverwachte route-events en verzamel grondstoffen om nieuwe uitrusting te craften.
                         </p>
                     </div>
 
                     <!-- Kaart 4 -->
-                    <div class="bg-slate-950/80 border border-slate-800 rounded-2xl p-6 hover:border-cyan-800/60 transition-colors">
-                        <div class="w-12 h-12 bg-cyan-950 border border-cyan-800/50 rounded-xl flex items-center justify-center text-cyan-400 mb-5">
+                    <div class="bg-white dark:bg-slate-950/80 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 shadow-sm dark:shadow-none hover:border-cyan-400 dark:hover:border-cyan-800/60 transition-colors">
+                        <div class="w-12 h-12 bg-cyan-50 dark:bg-cyan-950 border border-cyan-200 dark:border-cyan-800/50 rounded-xl flex items-center justify-center text-cyan-600 dark:text-cyan-400 mb-5">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-2">Biologiecodex</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed">
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Biologiecodex</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
                             Sla de ingebouwde codex open tijdens je expeditie om alles te leren over celorganellen, processen en hoe je vijanden verslaat.
                         </p>
                     </div>
@@ -166,33 +306,33 @@
         <section class="py-20">
             <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center max-w-2xl mx-auto mb-16">
-                    <h2 class="text-3xl font-bold text-white mb-4">Hoe werkt het?</h2>
-                    <p class="text-slate-400 text-lg">
+                    <h2 class="text-3xl font-bold text-slate-900 dark:text-white mb-4">Hoe werkt het?</h2>
+                    <p class="text-slate-600 dark:text-slate-400 text-lg">
                         Direct speelbaar in je browser zonder downloads of ingewikkelde installaties.
                     </p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="relative p-6 rounded-2xl bg-slate-900/30 border border-slate-800/80">
+                    <div class="relative p-6 rounded-2xl bg-white dark:bg-slate-900/30 border border-slate-200 dark:border-slate-800/80 shadow-sm dark:shadow-none">
                         <span class="text-4xl font-extrabold text-cyan-500/20 absolute top-4 right-6">01</span>
-                        <h3 class="text-lg font-bold text-white mb-2">Start een sessie</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed">
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Start een sessie</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
                             Open de game, kies voor solo of maak een lobby aan en nodig tot 3 vrienden uit via een simpele link.
                         </p>
                     </div>
 
-                    <div class="relative p-6 rounded-2xl bg-slate-900/30 border border-slate-800/80">
+                    <div class="relative p-6 rounded-2xl bg-white dark:bg-slate-900/30 border border-slate-200 dark:border-slate-800/80 shadow-sm dark:shadow-none">
                         <span class="text-4xl font-extrabold text-cyan-500/20 absolute top-4 right-6">02</span>
-                        <h3 class="text-lg font-bold text-white mb-2">Kies je strategie</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed">
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Kies je strategie</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
                             Selecteer je klasse, stippel je route uit langs verschillende events en gebruik crafting om sterker te worden.
                         </p>
                     </div>
 
-                    <div class="relative p-6 rounded-2xl bg-slate-900/30 border border-slate-800/80">
+                    <div class="relative p-6 rounded-2xl bg-white dark:bg-slate-900/30 border border-slate-200 dark:border-slate-800/80 shadow-sm dark:shadow-none">
                         <span class="text-4xl font-extrabold text-cyan-500/20 absolute top-4 right-6">03</span>
-                        <h3 class="text-lg font-bold text-white mb-2">Leer & Overwin</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed">
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Leer & Overwin</h3>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
                             Pas je kennis uit de Biologiecodex toe in gevechten, bouw een streak op en voltooi alle 24 stages.
                         </p>
                     </div>
@@ -201,34 +341,34 @@
         </section>
 
         <!-- Over JAMS Studio Sectie -->
-        <section id="over-ons" class="py-20 bg-slate-900/40 border-t border-slate-800/60">
+        <section id="over-ons" class="py-20 bg-slate-100/80 dark:bg-slate-900/40 border-t border-slate-200 dark:border-slate-800/60 transition-colors duration-300">
             <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="bg-slate-950 border border-slate-800 rounded-3xl p-8 sm:p-12">
+                <div class="bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-3xl p-8 sm:p-12 shadow-sm dark:shadow-none">
                     <div class="max-w-3xl">
-                        <div class="inline-block px-3 py-1 rounded-full bg-blue-950 border border-blue-800/50 text-blue-300 text-xs font-semibold uppercase tracking-wider mb-4">
+                        <div class="inline-block px-3 py-1 rounded-full bg-blue-100 dark:bg-blue-950 border border-blue-200 dark:border-blue-800/50 text-blue-700 dark:text-blue-300 text-xs font-semibold uppercase tracking-wider mb-4">
                             Over de Studio
                         </div>
-                        <h2 class="text-3xl font-bold text-white mb-4">Gemaakt door studenten, voor nieuwsgierige spelers</h2>
-                        <p class="text-slate-400 text-lg leading-relaxed mb-8">
+                        <h2 class="text-3xl font-bold text-slate-900 dark:text-white mb-4">Gemaakt door studenten, voor nieuwsgierige spelers</h2>
+                        <p class="text-slate-600 dark:text-slate-400 text-lg leading-relaxed mb-8">
                             JAMS Studio is ontstaan vanuit het idee dat leren niet saai hoeft te zijn. Door lesstof uit de biologie te verweven met echte RPG-mechanieken zoals co-op, klassen en crafting, maken we complexe processen op celniveau tastbaar en leuk om te ontdekken.
                         </p>
                     </div>
 
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4 border-t border-slate-800/80">
-                        <div class="p-4 rounded-xl bg-slate-900/50 border border-slate-800/60">
-                            <div class="text-cyan-400 font-bold text-lg">Jurre Stoop</div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4 border-t border-slate-200 dark:border-slate-800/80">
+                        <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800/60">
+                            <div class="text-cyan-600 dark:text-cyan-400 font-bold text-lg">Jurre Stoop</div>
                             <div class="text-slate-500 text-sm">Co-founder & Developer</div>
                         </div>
-                        <div class="p-4 rounded-xl bg-slate-900/50 border border-slate-800/60">
-                            <div class="text-cyan-400 font-bold text-lg">Adam Mul</div>
+                        <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800/60">
+                            <div class="text-cyan-600 dark:text-cyan-400 font-bold text-lg">Adam Mul</div>
                             <div class="text-slate-500 text-sm">Co-founder & Developer</div>
                         </div>
-                        <div class="p-4 rounded-xl bg-slate-900/50 border border-slate-800/60">
-                            <div class="text-cyan-400 font-bold text-lg">Michael van der Leeden</div>
+                        <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800/60">
+                            <div class="text-cyan-600 dark:text-cyan-400 font-bold text-lg">Michael van der Leeden</div>
                             <div class="text-slate-500 text-sm">Co-founder & Developer</div>
                         </div>
-                        <div class="p-4 rounded-xl bg-slate-900/50 border border-slate-800/60">
-                            <div class="text-cyan-400 font-bold text-lg">Sem Bodewes</div>
+                        <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800/60">
+                            <div class="text-cyan-600 dark:text-cyan-400 font-bold text-lg">Sem Bodewes</div>
                             <div class="text-slate-500 text-sm">Co-founder & Developer</div>
                         </div>
                     </div>
@@ -238,7 +378,7 @@
     </main>
 
     <!-- Footer met Team JAMS -->
-    <footer class="bg-black text-slate-400 py-10 border-t border-slate-800 mt-auto">
+    <footer class="bg-slate-900 dark:bg-black text-slate-400 py-10 border-t border-slate-800 mt-auto transition-colors duration-300">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row justify-between items-center gap-8 mb-8">
                 <div class="flex items-center gap-3">
@@ -261,11 +401,14 @@
             
             <div class="border-t border-slate-800 pt-6 flex flex-col md:flex-row justify-center items-center text-center">
                 <p class="text-sm">
-                    &copy; 2024 JAMS Studio. Alle rechten voorbehouden.
+                    &copy; 2026 JAMS Studio. Alle rechten voorbehouden.
                 </p>
             </div>
         </div>
     </footer>
+
+    <!-- Koppeling naar het externe JavaScript bestand -->
+    <script src="app.js"></script>
 
 </body>
 </html>
