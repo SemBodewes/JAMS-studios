@@ -48,15 +48,16 @@
                     
                     <!-- Theme Switcher Knop -->
                     <button id="theme-toggle" type="button" aria-label="Wissel kleurthema" 
-                            class="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800/80 text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 transition-all focus:outline-none focus:ring-2 focus:ring-cyan-500">
-                        <!-- Zon icoon (zichtbaar in dark mode) -->
-                        <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
+                            class="flex items-center gap-2 px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-100 hover:bg-slate-200 dark:hover:bg-slate-700 border border-slate-300 dark:border-slate-600 shadow-sm transition-all cursor-pointer focus:outline-none focus:ring-2 focus:ring-cyan-500">
+                        <!-- Zon icoon (standaard zichtbaar in dark mode) -->
+                        <svg id="theme-toggle-light-icon" class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path>
                         </svg>
                         <!-- Maan icoon (zichtbaar in light mode) -->
                         <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-slate-700" fill="currentColor" viewBox="0 0 20 20">
                             <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
                         </svg>
+                        <span id="theme-toggle-text" class="text-xs font-semibold hidden md:inline">Thema</span>
                     </button>
                 </div>
             </div>
@@ -88,6 +89,31 @@
                     <!-- Live UI Preview van de Game (Membraanroute) -->
                     <div class="w-full lg:w-1/2">
                         <div class="rounded-2xl overflow-hidden border border-slate-300 dark:border-slate-700/80 bg-[#050814] shadow-xl dark:shadow-[0_0_40px_rgba(14,165,233,0.2)] transform hover:scale-[1.01] transition-all duration-300 select-none text-left font-sans">
+                            <!-- Top Header Bar -->
+                            <div class="flex items-center justify-between px-4 py-2.5 border-b border-slate-800/80 bg-[#080d20]">
+                                <div class="flex items-center gap-2.5">
+                                    <div class="w-7 h-7 rounded-lg bg-gradient-to-br from-cyan-400 to-indigo-600 flex items-center justify-center text-white font-bold text-xs shadow">
+                                        🧬
+                                    </div>
+                                    <div>
+                                        <div class="text-xs font-extrabold tracking-wider text-cyan-300">CELLULAR LEGENDS</div>
+                                        <div class="text-[10px] text-slate-400">Biologie · Cel-expeditie</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-1.5 text-[10px] font-semibold">
+                                    <span class="px-2 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300">⚡ Streak: 0</span>
+                                    <span class="px-2 py-0.5 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-indigo-300">🏆 Score: 0</span>
+                                </div>
+                            </div>
+
+                            <!-- Stage Content -->
+                            <div class="p-3.5 space-y-3">
+                                <!-- Stage Banner -->
+                                <div class="p-3 rounded-xl bg-[#0b1024] border border-slate-800/90 flex justify-between items-center">
+                                    <div>
+                                        <div class="text-[11px] font-semibold">
+                                            <span class="text-cyan-400">Stage 2 / 24 · Cytoplasma Plains</span>
+                                            <span class="text-emerald-400 ml-1.5">JOUW BEURT</span>
                                         </div>
                                         <div class="text-sm font-bold text-white mt-0.5">Membraanroute</div>
                                         <div class="text-[11px] text-slate-400">Kies een vijand voor je aanval of een teamgenoot voor healing.</div>
