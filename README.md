@@ -62,13 +62,13 @@ De naam **JAMS Studio** staat voor de voorletters van de vier oprichters (**J**u
 | :--------------------- | :------------- | :-------------------- |
 | Sem Bodewes            | Manager        | @SemBodewes           |
 | Adam Mul               | Chef Marketing | @Kaksoie              |
-| Jurre Stoop            | Chef Product   | @jurresto01-sys       |
+| Jurre Stoop            | Chef Product   | @Ukkepuk20000         |
 | Michael van der Leeden | Chef Kwaliteit | @Michael-fioretti     |
 
 ### Verantwoordelijkheden per rol
 * **Manager (@SemBodewes):** Planning bewaken, taken verdelen, GitHub-issues bijhouden en mijlpalen inleveren.
 * **Chef Marketing (@Kaksoie):** Huisstijl, teksten, studiowebsite, doelgroep en het voorbereiden van de eindpresentatie.
-* **Chef Product (@jurresto01-sys):** Ontwerpen en bouwen van de game, RPG-mechanieken en stages.
+* **Chef Product (@Ukkepuk20000):** Ontwerpen en bouwen van de game, RPG-mechanieken en stages.
 * **Chef Kwaliteit (@Michael-fioretti):** Opstellen van kwaliteitseisen, playtesten van de game en uitvoeren van de eindcontrole.
 
 ---
