@@ -13,7 +13,7 @@
 
 In onze game **Cellular Legends** verweven we lesstof uit de biologie met echte RPG-mechanieken zoals co-op, unieke klassen, d20-gevechten en crafting. Zo maken we complexe processen op celniveau tastbaar en leuk om samen met tot wel 4 spelers te ontdekken — direct in je browser, zonder downloads of installaties.
 
-In deze **JAMS-Studios** repository zijn de volledige broncode van de game, de documentatie en het projectbeheer op één centrale plek voor het hele team samengebracht.
+In deze **JAMS-Studios** repository beheren we de documentatie, planning en GitHub Issues centraal voor het hele team. De broncode van de game zelf staat in de repository van Michael (`@Michael-fioretti`), vanwaaruit ook de koppeling met Render draait.
 
 ---
 
@@ -22,13 +22,12 @@ In deze **JAMS-Studios** repository zijn de volledige broncode van de game, de d
 ### Waarom moet je via Render naar de game?
 * **Backend-server nodig voor multiplayer:** Een gewone, statische webpagina (zoals GitHub Pages) laadt alleen de voorkant (*frontend*) van het spel. Solo spelen werkt dan wel, maar er draait geen server op de achtergrond.
 * **Live synchronisatie:** Voor **Squad Multiplayer** is een actieve server (met WebSocket-verbinding) nodig om lobby's aan te maken, invite-links te koppelen en gevechtsbeurten tussen spelers live te synchroniseren. **Render** host deze server.
-* **Slaapstand (Spin-down):** Op de gratis versie van Render gaat de server na 15 minuten inactiviteit automatisch in slaapstand. Door eerst via Render de service te openen, wordt de server wakker gemaakt zodat multiplayer direct werkt.
 
 ### Stappenplan: Zo kom je via Render in de game
 1. **Ga naar Render:** Open [Render](https://dashboard.render.com/) en log in op het dashboard.
-2. **Open de webservice:** Klik in het overzicht op de webservice van **Cellular Legends** (gekoppeld aan de `JAMS-Studios` repository).
+2. **Open de webservice:** Klik in het overzicht op de webservice van **Cellular Legends** (gekoppeld aan de repository van `@Michael-fioretti`).
 3. **Controleer de serverstatus:** Kijk of de status bovenaan op **Live** staat. Stond de server in slaapstand? Wacht dan **30 tot 60 seconden** totdat Render de server weer volledig heeft opgestart.
-4. **Start de game vanuit Render:** Klik bovenaan de servicepagina op de `.onrender.com`-URL (zoals `https://cellular-legends.onrender.com/`) om de game met actieve multiplayer-server te openen.
+4. **Start de game vanuit Render:** Klik bovenaan de servicepagina op de `.onrender.com`-URL (`https://cellular-legends.onrender.com/`) om de game met actieve multiplayer-server te openen.
 5. **Maak een squad aan:** Klik in het startscherm van de game op **Maak een squad**, kopieer de invite-link en stuur deze door naar je teamgenoten (maximaal 4 spelers).
 
 ---
@@ -69,12 +68,12 @@ De naam **JAMS Studio** staat voor de voorletters van de vier oprichters (**J**u
 * **Manager (@SemBodewes):** Planning bewaken, taken verdelen, GitHub-issues bijhouden en mijlpalen inleveren.
 * **Chef Marketing (@Kaksoie):** Huisstijl, teksten, studiowebsite, doelgroep en het voorbereiden van de eindpresentatie.
 * **Chef Product (@Ukkepuk20000):** Ontwerpen en bouwen van de game, RPG-mechanieken en stages.
-* **Chef Kwaliteit (@Michael-fioretti):** Opstellen van kwaliteitseisen, playtesten van de game en uitvoeren van de eindcontrole.
+* **Chef Kwaliteit (@Michael-fioretti):** Opstellen van kwaliteitseisen, playtesten van de game, beheren van de game-repository en uitvoeren van de eindcontrole.
 
 ---
 
 ## 🛠️ Werkwijze & Repository
-Alle code van **Cellular Legends** staat nu direct in deze **JAMS-Studios** repository. We houden onze voortgang bij via **GitHub Issues** (te vinden onder het tabblad *Issues* bovenaan deze pagina):
+Deze **JAMS-Studios** repository dient als centrale plek voor projectbeheer en documentatie, terwijl de broncode van **Cellular Legends** in de repository van `@Michael-fioretti` staat. We houden onze voortgang bij via **GitHub Issues** (te vinden onder het tabblad *Issues* bovenaan deze pagina):
 1. Elke rol heeft een eigen issue met een checklist van taken.
 2. Zodra een taak is afgerond, wordt deze afgevinkt in de bijbehorende issue.
-3. Nieuwe updates en code van de game worden vanuit deze centrale repository beheerd en via Render gedeployed.
+3. Nieuwe updates en code van de game worden vanuit Michael's repository beheerd en via Render gedeployed.
